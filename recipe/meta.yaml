@@ -1,41 +1,48 @@
-{% set version = "3.1.1" %}
+{% set version = "3.2.0" %}
 
 package:
-    name: pydap
-    version: {{ version }}
+  name: pydap
+  version: {{ version }}
 
 source:
-    fn: Pydap-{{ version }}.tar.gz
-    url: https://pypi.python.org/packages/source/P/Pydap/Pydap-{{ version }}.tar.gz
-    md5: d13630328c121eeeb0e0f015eb9e7124
+  fn: Pydap-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/P/Pydap/Pydap-{{ version }}.tar.gz
+  sha256: 86dca669f84eecba6ff67af7fa3332af24a0163a72991d02452f4ca1f4d3f99f
 
 build:
-    number: 0
-    skip: True  # [py3k]
-    script: python setup.py install --single-version-externally-managed --record record.txt
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
-    build:
-        - python
-        - setuptools
-    run:
-        - python
-        - numpy
-        - httplib2 >=0.4.0
-        - genshi
-        - paste
-        - pastescript
-        - pastedeploy
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+    - numpy
+    - singledispatch
+    - webob
+    - jinja2
+    - docopt
+    - gunicorn  # [not win]
+    - six >=1.4.0
+    - mechanicalsoup
+    # optional
+    - gsw
+    #- coards
+    - scipy
+    - requests
 
 test:
-    imports:
-        - pydap
+  imports:
+    - pydap
 
 about:
-    home: http://pydap.org/
-    license: MIT
-    summary: Pure Python Opendap/DODS client and server
+  home: http://pydap.org/
+  license: MIT
+  license_file: docs/license.rst
+  summary: 'Pure Python Opendap/DODS client and server.'
 
 extra:
-    recipe-maintainers:
-        - ocefpaf
+  recipe-maintainers:
+    - ocefpaf
