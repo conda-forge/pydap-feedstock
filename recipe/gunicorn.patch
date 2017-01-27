@@ -1,0 +1,40 @@
+--- Pydap-3.2.0.orig/setup.py	2016-12-01 19:32:16.000000000 -0300
++++ Pydap-3.2.0/setup.py	2017-01-27 15:25:55.701470972 -0300
+@@ -10,7 +10,6 @@
+     'Webob',
+     'Jinja2',
+     'docopt',
+-    'gunicorn',
+     'six >= 1.4.0',
+     'mechanicalsoup',
+ ]
+@@ -24,6 +23,10 @@
+     'scipy',
+ ]
+ 
++server_extras = [
++    'gunicorn',
++]
++
+ docs_extras = [
+     'Sphinx',
+     'Pygments',
+@@ -34,7 +37,7 @@
+     'requests'
+     ]
+     
+-tests_require = functions_extras + cas_extras + [
++tests_require = functions_extras + cas_extras + server_extras + [
+     'WebTest',
+     'beautifulsoup4',
+     'scipy'
+@@ -80,7 +83,8 @@
+         'testing': testing_extras,
+         'docs': docs_extras,
+         'tests': tests_require,
+-        'cas': cas_extras
++        'cas': cas_extras,
++        'server': server_extras
+     },
+     test_suite="pydap.tests",
+     entry_points="""

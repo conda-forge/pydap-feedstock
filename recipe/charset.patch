@@ -1,0 +1,17 @@
+--- Pydap-3.2.0.orig/src/pydap/handlers/dap.py	2016-12-01 18:03:54.000000000 -0300
++++ Pydap-3.2.0/src/pydap/handlers/dap.py	2017-01-27 15:41:47.993518399 -0300
+@@ -49,10 +49,14 @@
+         ddsurl = urlunsplit((scheme, netloc, path + '.dds', query, fragment))
+         r = GET(ddsurl, application, session)
+         raise_for_status(r)
++        if not r.charset:
++            r.charset = 'utf8'
+         dds = r.text
+ 
+         dasurl = urlunsplit((scheme, netloc, path + '.das', query, fragment))
+         r = GET(dasurl, application, session)
++        if not r.charset:
++            r.charset = 'utf8'
+         raise_for_status(r)
+         das = r.text
+ 
