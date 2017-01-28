@@ -8,9 +8,12 @@ source:
   fn: Pydap-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/P/Pydap/Pydap-{{ version }}.tar.gz
   sha256: 86dca669f84eecba6ff67af7fa3332af24a0163a72991d02452f4ca1f4d3f99f
+  patches:
+    - gunicorn.patch
+    - charset.patch
 
 build:
-  number: 0
+  number: 1
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
@@ -24,14 +27,15 @@ requirements:
     - webob
     - jinja2
     - docopt
-    - gunicorn  # [not win]
     - six >=1.4.0
     - mechanicalsoup
-    # optional
+    # Optional.
     - gsw
-    #- coards
     - scipy
     - requests
+    #- coards
+    # Server only.
+    - gunicorn  # [not win]
 
 test:
   imports:
