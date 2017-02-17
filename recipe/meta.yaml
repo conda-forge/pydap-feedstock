@@ -10,7 +10,7 @@ source:
   sha256: 86dca669f84eecba6ff67af7fa3332af24a0163a72991d02452f4ca1f4d3f99f
   patches:
     - gunicorn.patch
-    #- charset.patch
+    - charset.patch
 
 build:
   number: 2
