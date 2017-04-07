@@ -1,4 +1,4 @@
-{% set version = "3.2.0" %}
+{% set version = "3.2.1" %}
 
 package:
   name: pydap
@@ -7,13 +7,10 @@ package:
 source:
   fn: Pydap-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/P/Pydap/Pydap-{{ version }}.tar.gz
-  sha256: 86dca669f84eecba6ff67af7fa3332af24a0163a72991d02452f4ca1f4d3f99f
-  patches:
-    - gunicorn.patch
-    - charset.patch
+  sha256: d2bba644ba5bac5e6570d0a42db4b908440d2d8ccaf6ffae1ae459c4c8a3244b
 
 build:
-  number: 2
+  number: 0
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
