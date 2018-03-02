@@ -5,18 +5,17 @@ package:
   version: {{ version }}
 
 source:
-  fn: Pydap-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/P/Pydap/Pydap-{{ version }}.tar.gz
   sha256: 86326642e24f421595a74b0f9986da76d7932b277768f501fe214d72592bdc40
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record record.txt
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
   build:
     - python
-    - setuptools
+    - pip
   run:
     - python
     - numpy
