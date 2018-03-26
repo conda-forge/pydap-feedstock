@@ -1,4 +1,4 @@
-{% set version = "3.2.1" %}
+{% set version = "3.2.2" %}
 
 package:
   name: pydap
@@ -7,7 +7,7 @@ package:
 source:
   fn: Pydap-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/P/Pydap/Pydap-{{ version }}.tar.gz
-  sha256: d2bba644ba5bac5e6570d0a42db4b908440d2d8ccaf6ffae1ae459c4c8a3244b
+  sha256: 86326642e24f421595a74b0f9986da76d7932b277768f501fe214d72592bdc40
 
 build:
   number: 0
