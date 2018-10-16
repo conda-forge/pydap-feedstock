@@ -1,48 +1,50 @@
-{% set version = "3.2.1" %}
+{% set version = "3.2.2" %}
 
 package:
   name: pydap
   version: {{ version }}
 
 source:
-  fn: Pydap-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/P/Pydap/Pydap-{{ version }}.tar.gz
-  sha256: d2bba644ba5bac5e6570d0a42db4b908440d2d8ccaf6ffae1ae459c4c8a3244b
+  sha256: 86326642e24f421595a74b0f9986da76d7932b277768f501fe214d72592bdc40
+  patches:
+    - gzip_PR126.patch
 
 build:
   number: 1000
-  script: python setup.py install --single-version-externally-managed --record record.txt
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv"
+  entrypoints:
+    - pydap = pydap.wsgi.app:main
+    - dods = pydap.handlers.dap:dump
 
 requirements:
-  build:
+  host:
     - python
-    - setuptools
+    - pip
   run:
     - python
     - numpy
-    - singledispatch
     - webob
     - jinja2
     - docopt
     - six >=1.4.0
     - mechanicalsoup
-    # Optional.
-    - gsw
-    - scipy
-    - requests
-    #- coards
-    # Server only.
-    - gunicorn  # [not win]
+    - singledispatch  # [py27]
 
 test:
   imports:
     - pydap
+  requires:
+    - gunicorn  # [not win]
+    - pastedeploy  # [not win]
+  commands:
+    - pydap -h  # [not win]
 
 about:
   home: http://pydap.org/
   license: MIT
   license_file: docs/license.rst
-  summary: 'Pure Python Opendap/DODS client and server.'
+  summary: 'Pure Python Opendap/DODS client and server'
 
 extra:
   recipe-maintainers:
