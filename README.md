@@ -7,7 +7,7 @@ Package license: MIT
 
 Feedstock license: BSD 3-Clause
 
-Summary: Pure Python Opendap/DODS client and server.
+Summary: Pure Python Opendap/DODS client and server
 
 
 
