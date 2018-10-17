@@ -1,0 +1,16 @@
+--- Pydap-3.2.2.orig/src/pydap/net.py	2017-05-24 01:46:14.000000000 -0300
++++ Pydap-3.2.2/src/pydap/net.py	2018-10-16 10:28:50.954392273 -0300
+@@ -23,8 +23,11 @@
+         _, _, path, query, fragment = urlsplit(url)
+         url = urlunsplit(('', '', path, query, fragment))
+ 
+-    return follow_redirect(url, application=application, session=session,
+-                           timeout=timeout)
++    response = follow_redirect(url, application=application, session=session,
++                               timeout=timeout)
++    # Decode request response (i.e. gzip)
++    response.decode_content()
++    return response
+ 
+ 
+ def raise_for_status(response):
