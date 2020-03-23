@@ -35,10 +35,12 @@ test:
   imports:
     - pydap
   requires:
-    - gunicorn  # [not win]
-    - pastedeploy  # [not win]
+    - pip
+    # - gunicorn  # [not win]
+    # - pastedeploy  # [not win]
   commands:
-    - pydap -h  # [not win]
+    - pip check
+    # - pydap -h  # [not win]
 
 about:
   home: http://pydap.org/
