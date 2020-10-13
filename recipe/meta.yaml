@@ -11,7 +11,7 @@ source:
     - gzip_PR126.patch
 
 build:
-  number: 1000
+  number: 1001
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv"
   entry_points:
     - pydap = pydap.wsgi.app:main
