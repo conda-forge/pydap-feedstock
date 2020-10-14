@@ -11,8 +11,9 @@ source:
     - gzip_PR126.patch
 
 build:
-  number: 1000
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv"
+  number: 1001
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
   entry_points:
     - pydap = pydap.wsgi.app:main
     - dods = pydap.handlers.dap:dump
@@ -23,13 +24,15 @@ requirements:
     - pip
   run:
     - python
+    - beautifulsoup4
+    - docopt
+    - jinja2
     - numpy
     - webob
-    - jinja2
-    - docopt
     - six >=1.4.0
-    - mechanicalsoup
-    - singledispatch  # [py27]
+    - webob
+    #  net
+    - requests
 
 test:
   imports:
@@ -37,8 +40,11 @@ test:
   requires:
     - gunicorn  # [not win]
     - pastedeploy  # [not win]
+    - pip
   commands:
     - pydap -h  # [not win]
+  commands:
+    - pip check
 
 about:
   home: http://pydap.org/
