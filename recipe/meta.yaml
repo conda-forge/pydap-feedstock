@@ -1,17 +1,15 @@
-{% set version = "3.2.2" %}
+{% set version = "3.3.0" %}
 
 package:
   name: pydap
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/P/Pydap/Pydap-{{ version }}.tar.gz
-  sha256: 86326642e24f421595a74b0f9986da76d7932b277768f501fe214d72592bdc40
-  patches:
-    - gzip_PR126.patch
+  url: https://github.com/pydap/pydap/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 566ba4a12a47547135c46324ddc65b03e680ec007f01581ceca0b0341d2110b0
 
 build:
-  number: 1001
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
@@ -20,10 +18,10 @@ build:
 
 requirements:
   host:
-    - python
+    - python >=3.6
     - pip
   run:
-    - python
+    - python >=3.6
     - beautifulsoup4
     - docopt
     - jinja2
