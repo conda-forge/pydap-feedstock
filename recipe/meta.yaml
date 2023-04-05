@@ -8,8 +8,6 @@ source:
   url: https://github.com/pydap/pydap/archive/refs/tags/{{ version }}.tar.gz
   sha256: c6bded7461ab4db0f94a46441fd114cff0edf327997a3950fd11056132b9c8e2
 
-  # sha256 for 3.3.0: 566ba4a12a47547135c46324ddc65b03e680ec007f01581ceca0b0341d2110b0
-
 build:
   number: 0
   noarch: python
