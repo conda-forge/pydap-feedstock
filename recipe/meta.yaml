@@ -31,6 +31,8 @@ requirements:
     - requests
     - importlib-metadata
     - importlib-resources
+    - pip:
+        docopt-ng
 
 test:
   imports:
