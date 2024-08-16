@@ -25,14 +25,13 @@ requirements:
     - numpy
     - webob
     - jinja2
-    - docopt-ng
     - beautifulsoup4
     - lxml
     - requests
     - importlib-metadata
     - importlib-resources
     - pip:
-        - docopt-ng
+      - docopt-ng
 
 test:
   imports:
