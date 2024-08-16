@@ -41,6 +41,7 @@ test:
     - pip
 
 about:
+  home: https://github.com/pydap/pydap
   summary: A pure python implementation of the Data Access Protocol.
   license: MIT
   license_file: LICENSE
