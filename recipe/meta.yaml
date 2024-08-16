@@ -32,7 +32,7 @@ requirements:
     - importlib-metadata
     - importlib-resources
     - pip:
-        docopt-ng
+        - docopt-ng
 
 test:
   imports:
