@@ -1,36 +1,36 @@
-{% set version = "3.4.0" %}
+{% set name = "pydap" %}
+{% set version = "3.5" %}
 
 package:
-  name: pydap
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/pydap/pydap/archive/refs/tags/{{ version }}.tar.gz
-  sha256: c6bded7461ab4db0f94a46441fd114cff0edf327997a3950fd11056132b9c8e2
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pydap-{{ version }}.tar.gz
+  sha256: 0ee6cb7a4892ef22a15c4e2aa58b2656104c542c74faf16c580c56fdf97647ab
 
 build:
-  number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
-  entry_points:
-    - pydap = pydap.wsgi.app:main
-    - dods = pydap.handlers.dap:dump
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
 
 requirements:
   host:
-    - python >=3.7
+    - python >=3.9
+    - setuptools >=64
+    - setuptools-scm >=8
     - pip
   run:
-    - python >=3.7
-    - beautifulsoup4
-    - docopt
-    - jinja2
+    - python >=3.9
     - numpy
     - webob
-    - six >=1.4.0
-    - webob
-    #  net
+    - jinja2
+    - docopt-ng
+    - beautifulsoup4
+    - lxml
     - requests
+    - importlib-metadata
+    - importlib-resources
 
 test:
   imports:
@@ -40,16 +40,16 @@ test:
     - pastedeploy  # [not win]
     - pip
   commands:
-    - pydap -h  # [not win]
-  commands:
     - pip check
+    - pydap -h  # [not win]
 
 about:
-  home: http://pydap.org/
+  home: https://pydap.github.io/pydap/intro.html
+  summary: A pure python implementation of the Data Access Protocol.
   license: MIT
-  license_file: docs/license.rst
-  summary: 'Pure Python Opendap/DODS client and server'
+  license_file: LICENSE
 
 extra:
   recipe-maintainers:
     - ocefpaf
+    - Mikejmnez
