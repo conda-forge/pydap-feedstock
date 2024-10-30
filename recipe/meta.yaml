@@ -1,13 +1,13 @@
 {% set name = "pydap" %}
-{% set version = "3.5" %}
+{% set version = "3.5.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pydap-{{ version }}.tar.gz
-  sha256: 0ee6cb7a4892ef22a15c4e2aa58b2656104c542c74faf16c580c56fdf97647ab
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pydap-{{ version }}.tar.gz
+  sha256: aeb838b5c7021e13b2111f11558d177809419aca3c19afb2bcb4b6e5c463b211
 
 build:
   noarch: python
@@ -16,21 +16,28 @@ build:
 
 requirements:
   host:
-    - python >=3.9
+    - python >=3.10
     - setuptools >=64
     - setuptools-scm >=8
     - pip
   run:
-    - python >=3.9
-    - numpy
-    - webob
-    - jinja2
-    - docopt-ng
-    - beautifulsoup4
-    - lxml
+    - python >=3.10
+    - numpy >=2.0
     - requests
-    - importlib-metadata
-    - importlib-resources
+    - scipy
+    # optional, server, but required to pass the import test
+    - docopt-ng
+    - jinja2
+    - webob
+    # optional deps
+    # server
+    # - beautifulsoup4
+    # - lxml
+    # functions
+    # - coards
+    # - gsw
+    # netcdf
+    # - netcdf4
 
 test:
   imports:
