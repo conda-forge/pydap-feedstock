@@ -3,11 +3,11 @@ About pydap-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pydap-feedstock/blob/main/LICENSE.txt)
 
-Home: http://pydap.org/
+Home: https://pydap.github.io/pydap/intro.html
 
 Package license: MIT
 
-Summary: Pure Python Opendap/DODS client and server
+Summary: A pure python implementation of the Data Access Protocol.
 
 Current build status
 ====================
@@ -143,5 +143,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@Mikejmnez](https://github.com/Mikejmnez/)
 * [@ocefpaf](https://github.com/ocefpaf/)
 
