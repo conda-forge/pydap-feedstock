@@ -1,5 +1,5 @@
 {% set name = "pydap" %}
-{% set version = "3.5" %}
+{% set version = "3.5.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pydap-{{ version }}.tar.gz
-  sha256: 0ee6cb7a4892ef22a15c4e2aa58b2656104c542c74faf16c580c56fdf97647ab
+  sha256: aeb838b5c7021e13b2111f11558d177809419aca3c19afb2bcb4b6e5c463b211
 
 build:
   noarch: python
