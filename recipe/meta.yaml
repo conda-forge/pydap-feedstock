@@ -36,16 +36,16 @@ outputs:
         - docopt-ng
         - jinja2
         - webob
-      test:
-        imports:
-          - pydap
-        requires:
-          - gunicorn  # [not win]
-          - pastedeploy  # [not win]
-          - pip
-        commands:
-          - pip check
-          - pydap -h  # [not win]
+    test:
+      imports:
+        - pydap
+      requires:
+        - gunicorn  # [not win]
+        - pastedeploy  # [not win]
+        - pip
+      commands:
+        - pip check
+        - pydap -h  # [not win]
     
   - name: pydap-server
     build: 
@@ -66,16 +66,16 @@ outputs:
         - lxml
         - PasteDeploy
         - Webob
-      test:
-        imports:
-          - pydap
-        requires:
-          - gunicorn  # [not win]
-          - pastedeploy  # [not win]
-          - pip
-        commands:
-          - pip check
-          - pydap -h  # [not win]
+    test:
+      imports:
+        - pydap
+      requires:
+        - gunicorn  # [not win]
+        - pastedeploy  # [not win]
+        - pip
+      commands:
+        - pip check
+        - pydap -h  # [not win]
   
 about:
   home: https://pydap.github.io/pydap/intro.html
