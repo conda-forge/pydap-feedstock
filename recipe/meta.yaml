@@ -24,7 +24,7 @@ outputs:
       noarch: generic
     requirements:
       host:
-        - python >={{ min_python }}
+        - python {{ python_min }}
         - setuptools >=64
         - setuptools-scm >=8
         - pip
@@ -53,12 +53,12 @@ outputs:
       noarch: generic
     requirements:
       host:
-        - python ={{ python_min }}.*
+        - python {{ python_min }}
         - setuptools >=64
         - setuptools-scm >=8
         - pip
       run:
-        - {{ min_python }}
+        - python >={{ python_min }}
         - {{ pin_subpackage("pydap", exact=True) }}
         - beautifulsoup4
         - docopt-ng
