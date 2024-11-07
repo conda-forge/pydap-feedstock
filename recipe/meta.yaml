@@ -53,7 +53,7 @@ outputs:
       noarch: generic
     requirements:
       host:
-        - python {{ python_min }}.*
+        - python ={{ python_min }}.*
         - setuptools >=64
         - setuptools-scm >=8
         - pip
