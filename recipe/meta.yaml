@@ -2,6 +2,9 @@
 {% set version = "3.5.1" %}
 {% set min_python = "python >=3.10" %}
 
+# handle undefined PYTHON in `noarch: python` outputs
+{% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
