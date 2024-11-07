@@ -14,7 +14,7 @@ build:
   number: 1
 
 outputs:
-  - name: pydap
+  - name: "pydap"
     build:
       script: {{ PYTHON }} -m pip install . -vv
       noarch: python
@@ -43,7 +43,7 @@ outputs:
       commands:
         - pip check
         - pydap -h  # [not win]
-  - name: pydap-server
+  - name: "pydap-server"
     build: 
       noarch: python
     requirements:
@@ -54,7 +54,7 @@ outputs:
         - pip
       run:
         - {{ min_python }}
-        - { { pin_subpackage("pydap", exact=True) } }
+        - {{ pin_subpackage("pydap", exact=True) }}
         - beautifulsoup4
         - docopt-ng
         - gunicorn
