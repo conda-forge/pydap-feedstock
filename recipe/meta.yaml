@@ -14,13 +14,14 @@ source:
   sha256: aeb838b5c7021e13b2111f11558d177809419aca3c19afb2bcb4b6e5c463b211
 
 build:
+  noarch: python
   number: 1
 
 outputs:
   - name: "pydap"
     build:
       script: {{ PYTHON }} -m pip install . -vv
-      noarch: python
+      noarch: generic
     requirements:
       host:
         - {{ min_python }}
@@ -48,7 +49,7 @@ outputs:
         - pydap -h  # [not win]
   - name: "pydap-server"
     build: 
-      noarch: python
+      noarch: generic
     requirements:
       host:
         - {{ min_python }}
