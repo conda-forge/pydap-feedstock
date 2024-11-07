@@ -20,7 +20,7 @@ build:
 outputs:
   - name: "pydap"
     build:
-      script: {{ PYTHON }} -m pip install . -vv
+      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation 
       noarch: generic
     requirements:
       host:
