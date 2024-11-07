@@ -62,7 +62,7 @@ outputs:
         - beautifulsoup4
         - docopt-ng
         - gunicorn
-        - Jinja2
+        - jinja2
         - lxml
         - PasteDeploy
         - Webob
