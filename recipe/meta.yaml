@@ -1,6 +1,6 @@
 {% set name = "pydap" %}
 {% set version = "3.5.1" %}
-{% set min_python = "python >=3.10" %}
+{% set min_python = "3.10" %}
 
 # handle undefined PYTHON in `noarch: python` outputs
 {% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
@@ -29,7 +29,7 @@ outputs:
         - setuptools-scm >=8
         - pip
       run:
-        - {{ min_python }}
+        - python >={{ python_min }}
         - numpy >=2.0
         - requests
         - scipy
@@ -41,6 +41,7 @@ outputs:
       imports:
         - pydap
       requires:
+        - python ={{ python_min }}
         - gunicorn  # [not win]
         - pastedeploy  # [not win]
         - pip
@@ -52,7 +53,7 @@ outputs:
       noarch: generic
     requirements:
       host:
-        - {{ min_python }}
+        - python {{ python_min }}.*
         - setuptools >=64
         - setuptools-scm >=8
         - pip
@@ -70,6 +71,7 @@ outputs:
       imports:
         - pydap
       requires:
+        - python ={{ python_min }}
         - gunicorn  # [not win]
         - pastedeploy  # [not win]
         - pip
