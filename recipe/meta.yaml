@@ -1,6 +1,6 @@
 {% set name = "pydap" %}
 {% set version = "3.5.1" %}
-{% set min_python = "3.10" %}
+{% set python_min = "3.10" %}
 
 # handle undefined PYTHON in `noarch: python` outputs
 {% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
