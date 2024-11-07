@@ -28,6 +28,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pydap-green.svg)](https://anaconda.org/conda-forge/pydap) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pydap.svg)](https://anaconda.org/conda-forge/pydap) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pydap.svg)](https://anaconda.org/conda-forge/pydap) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pydap.svg)](https://anaconda.org/conda-forge/pydap) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pydap--server-green.svg)](https://anaconda.org/conda-forge/pydap-server) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pydap-server.svg)](https://anaconda.org/conda-forge/pydap-server) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pydap-server.svg)](https://anaconda.org/conda-forge/pydap-server) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pydap-server.svg)](https://anaconda.org/conda-forge/pydap-server) |
 
 Installing pydap
 ================
@@ -39,16 +40,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `pydap` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `pydap, pydap-server` can be installed with `conda`:
 
 ```
-conda install pydap
+conda install pydap pydap-server
 ```
 
 or with `mamba`:
 
 ```
-mamba install pydap
+mamba install pydap pydap-server
 ```
 
 It is possible to list all of the versions of `pydap` available on your platform with `conda`:

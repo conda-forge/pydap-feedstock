@@ -1,5 +1,9 @@
 {% set name = "pydap" %}
 {% set version = "3.5.1" %}
+{% set python_min = "3.10" %}
+
+# handle undefined PYTHON in `noarch: python` outputs
+{% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
 
 package:
   name: {{ name|lower }}
@@ -11,45 +15,70 @@ source:
 
 build:
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
-requirements:
-  host:
-    - python >=3.10
-    - setuptools >=64
-    - setuptools-scm >=8
-    - pip
-  run:
-    - python >=3.10
-    - numpy >=2.0
-    - requests
-    - scipy
-    # optional, server, but required to pass the import test
-    - docopt-ng
-    - jinja2
-    - webob
-    # optional deps
-    # server
-    # - beautifulsoup4
-    # - lxml
-    # functions
-    # - coards
-    # - gsw
-    # netcdf
-    # - netcdf4
-
-test:
-  imports:
-    - pydap
-  requires:
-    - gunicorn  # [not win]
-    - pastedeploy  # [not win]
-    - pip
-  commands:
-    - pip check
-    - pydap -h  # [not win]
-
+outputs:
+  - name: "pydap"
+    build:
+      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation 
+      noarch: generic
+    requirements:
+      host:
+        - python {{ python_min }}
+        - setuptools >=64
+        - setuptools-scm >=8
+        - pip
+      run:
+        - python >={{ python_min }}
+        - numpy >=2.0
+        - requests
+        - scipy
+        # optional, server, but required to pass the import test
+        - docopt-ng
+        - jinja2
+        - webob
+    test:
+      imports:
+        - pydap
+      requires:
+        - python ={{ python_min }}
+        - gunicorn  # [not win]
+        - pastedeploy  # [not win]
+        - pip
+      commands:
+        - pip check
+        - pydap -h  # [not win]
+  - name: "pydap-server"
+    build: 
+      noarch: generic
+    requirements:
+      host:
+        - python {{ python_min }}
+        - setuptools >=64
+        - setuptools-scm >=8
+        - pip
+      run:
+        - python >={{ python_min }}
+        - {{ pin_subpackage("pydap", exact=True) }}
+        - beautifulsoup4
+        - docopt-ng
+        - gunicorn
+        - jinja2
+        - lxml
+        - PasteDeploy
+        - Webob
+    test:
+      imports:
+        - pydap
+      requires:
+        - python ={{ python_min }}
+        - gunicorn  # [not win]
+        - pastedeploy  # [not win]
+        - pip
+      commands:
+        - pip check
+        - pydap -h  # [not win]
+  
 about:
   home: https://pydap.github.io/pydap/intro.html
   summary: A pure python implementation of the Data Access Protocol.
