@@ -2,9 +2,6 @@
 {% set version = "3.5.1" %}
 {% set min_python = "python >=3.10" %}
 
-# handle undefined PYTHON in `noarch: generic` outputs
-{% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
-
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -14,14 +11,13 @@ source:
   sha256: aeb838b5c7021e13b2111f11558d177809419aca3c19afb2bcb4b6e5c463b211
 
 build:
-  noarch: python
   number: 1
 
 outputs:
   - name: pydap
     build:
-      noarch: generic
-      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+      script: {{ PYTHON }} -m pip install . -vv
+      noarch: python
     requirements:
       host:
         - {{ min_python }}
@@ -47,10 +43,9 @@ outputs:
       commands:
         - pip check
         - pydap -h  # [not win]
-    
   - name: pydap-server
     build: 
-      noarch: generic
+      noarch: python
     requirements:
       host:
         - {{ min_python }}
@@ -59,7 +54,7 @@ outputs:
         - pip
       run:
         - {{ min_python }}
-        - { { pin_subpackage("pydap", max_pin="x.x.x") } }
+        - { { pin_subpackage("pydap", exact=True) } }
         - beautifulsoup4
         - docopt-ng
         - gunicorn
