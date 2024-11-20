@@ -1,5 +1,5 @@
 {% set name = "pydap" %}
-{% set version = "3.5.1" %}
+{% set version = "3.5.2" %}
 {% set python_min = "3.10" %}
 
 # handle undefined PYTHON in `noarch: python` outputs
@@ -11,16 +11,16 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pydap-{{ version }}.tar.gz
-  sha256: aeb838b5c7021e13b2111f11558d177809419aca3c19afb2bcb4b6e5c463b211
+  sha256: d26d3d2e3ad4def85b93c4277e9a1819ced86aa6c0a495c2c68e1726ab3ee794
 
 build:
   noarch: python
-  number: 2
+  number: 0
 
 outputs:
   - name: "pydap"
     build:
-      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation 
+      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
       noarch: python
     requirements:
       host:
@@ -49,7 +49,7 @@ outputs:
         - pip check
         - pydap -h  # [not win]
   - name: "pydap-server"
-    build: 
+    build:
       noarch: python
     requirements:
       host:
@@ -78,7 +78,6 @@ outputs:
       commands:
         - pip check
         - pydap -h  # [not win]
-  
 about:
   home: https://pydap.github.io/pydap/intro.html
   summary: A pure python implementation of the Data Access Protocol.
