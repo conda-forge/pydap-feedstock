@@ -1,5 +1,5 @@
 {% set name = "pydap" %}
-{% set version = "3.5.7" %}
+{% set version = "3.5.8" %}
 {% set python_min = "3.10" %}
 
 # handle undefined PYTHON in `noarch: python` outputs
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pydap-{{ version }}.tar.gz
-  sha256: 1e2ae9a87ee980564bff7da34b2e51fdf1629d6e74ae8ed52bc6fdf96a6c4a21
+  sha256: 0dc3c7f28fd456e17ed1c789ccfd119938a2bd1d73828cdf5319c69a213df560
 
 build:
   noarch: python
