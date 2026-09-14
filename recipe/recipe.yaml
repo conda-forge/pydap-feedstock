@@ -1,0 +1,108 @@
+schema_version: 1
+
+context:
+  name: pydap
+  version: "3.5.11"
+  python_min: "3.12"
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pydap-${{ version }}.tar.gz
+  sha256: ec4929d6b91618a34534fc872ab3879042b934c511fc4c6181efea9114b9521a
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: pydap
+    build:
+      noarch: python
+      script: python -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - python >=${{ python_min }}
+        - setuptools >=64
+        - setuptools-scm >=8
+        - pip
+      run:
+        - python >=${{ python_min }}
+        - numpy
+        - requests
+        - requests-cache
+        - scipy
+        - webob >=1.8.10
+        - beautifulsoup4
+        - lxml
+        # optional, server, but required to pass the import test
+        - docopt-ng
+        - jinja2
+    tests:
+      - python:
+          imports:
+            - pydap
+          pip_check: true
+          python_version: =${{ python_min }}
+      - requirements:
+          run:
+            - python =${{ python_min }}
+            - if: not win
+              then: gunicorn
+            - if: not win
+              then: pastedeploy
+            - pip
+        script:
+          - if: not win
+            then: pydap -h
+  - package:
+      name: pydap-server
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python >=${{ python_min }}
+        - setuptools >=64
+        - setuptools-scm >=8
+        - pip
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage("pydap", exact=True) }}
+        - beautifulsoup4
+        - docopt-ng
+        - gunicorn
+        - jinja2
+        - lxml
+        - PasteDeploy
+        - Webob
+    tests:
+      - python:
+          imports:
+            - pydap
+          pip_check: true
+          python_version: =${{ python_min }}
+      - requirements:
+          run:
+            - python =${{ python_min }}
+            - if: not win
+              then: gunicorn
+            - if: not win
+              then: pastedeploy
+            - pip
+        script:
+          - if: not win
+            then: pydap -h
+
+about:
+  summary: A pure python implementation of the Data Access Protocol.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://pydap.github.io/pydap/intro.html
+
+extra:
+  recipe-maintainers:
+    - ocefpaf
+    - Mikejmnez
